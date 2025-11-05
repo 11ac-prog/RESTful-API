@@ -1,0 +1,10 @@
+{
+  "name": "dog-api",
+  "type": "module",
+  "scripts": {
+    "normalize": "node scripts/script.js"
+  },
+  "dependencies": {
+    "mongoimport": "^1.0.6"
+  }
+}
