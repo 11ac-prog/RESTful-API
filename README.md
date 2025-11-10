@@ -4,8 +4,7 @@ This project is a backend API that serves a **dog breeds** dataset with full **C
 
 ## Link to the GitHub repository
 
-**Repository:** [https://github.com/](https://github.com/)11ac-prog/RESTful-API
-
+**Repository:** [https://github.com/11ac-prog/RESTful-API](https://github.com/11ac-prog/RESTful-API)
 ---
 
 ## Setup instructions
