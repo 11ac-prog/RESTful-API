@@ -1,8 +1,10 @@
 # Dogs API
 
-## Project description
-
 This project is a backend API that serves a **dog breeds** dataset with full **CRUD** operations plus **8 question endpoints** that compute insights (average weight, tallest breed, lapdog list, etc.). It uses **Node.js**, **Express**, **MongoDB (Atlas or local)**, and **Mongoose**, with optional **Jest** for tests and a ready-to-import **Postman** collection for manual checks.
+
+## Link to the GitHub repository
+
+**Repository:** [https://github.com/](https://github.com/)11ac-prog/RESTful-API
 
 ---
 
@@ -118,3 +120,120 @@ If you include the Postman files in `/postman`:
   * Returns `{ deleted: true }` (**200**) or **404**.
 
 ---
+
+### Analytics – 8 Question Endpoints
+
+1. **Average weight across all breeds**
+   `GET /questions/average-weight`
+
+   * Computes per-breed average (using kg when available, falls back to lbs → kg).
+   * Returns:
+
+     ```json
+     {
+       "question": "...",
+       "answer": { "kilograms": 12.34, "pounds": 27.2 },
+       "countBreedsUsed": 123
+     }
+     ```
+
+2. **Which breed has the longest average lifespan?**
+   `GET /questions/longest-average-lifespan`
+
+   * Average of `life_span.min` and `life_span.max`.
+   * Returns possibly multiple winners:
+
+     ```json
+     {
+       "question": "...",
+       "answer": [{ "name": "Breed A", "avgYears": 16.5 }],
+       "best": 16.5
+     }
+     ```
+
+3. **Which breed is the tallest?**
+   `GET /questions/tallest-breed`
+
+   * Uses `height.metric.max` (cm) or converts imperial inches to cm.
+   * Returns:
+
+     ```json
+     {
+       "question": "...",
+       "answer": [{ "name": "Breed B", "maxHeightCm": 86 }],
+       "best": 86
+     }
+     ```
+
+4. **Which breed group has the heaviest average weight?**
+   `GET /questions/heaviest-group-by-average`
+
+   * Per-breed average kg, then averaged by `breed_group`.
+   * Returns winners and all groups sorted:
+
+     ```json
+     {
+       "question": "...",
+       "answer": [{ "group": "Working", "averageKg": 35.1, "averageLb": 77.38, "count": 12 }],
+       "allGroups": [ ... ]
+     }
+     ```
+
+5. **Median weight of small breeds (< 20 lbs)**
+   `GET /questions/median-weight-small-breeds`
+
+   * Filters breeds by **average lbs < 20**, then returns median (lbs).
+   * Returns:
+
+     ```json
+     {
+       "question": "...",
+       "answer": 12.75,
+       "countBreedsUsed": 42,
+       "unit": "lbs",
+       "note": "Per-breed average lbs used to determine set and median."
+     }
+     ```
+
+6. **Which breed has the widest weight range between min and max?**
+   `GET /questions/widest-weight-range`
+
+   * Range = `max - min` (kg preferred; converts from lbs if needed).
+   * Returns winners:
+
+     ```json
+     {
+       "question": "...",
+       "answer": [{ "name": "Breed C", "rangeKg": 22.5, "rangeLb": 49.6 }],
+       "bestKg": 22.5
+     }
+     ```
+
+7. **How many breeds list "intelligent" in temperament?**
+   `GET /questions/count-intelligent-temperament`
+
+   * Case-insensitive search in temperament array or CSV.
+   * Returns:
+
+     ```json
+     {
+       "question": "...",
+       "answer": 19,
+       "breeds": ["Breed X", "Breed Y", "..."]
+     }
+     ```
+
+8. **Which breeds were bred for lapdog purposes?**
+   `GET /questions/lapdog-breeds`
+
+   * Matches “lap”, “lapdog”, or “companion” in `bred_for`.
+   * Returns:
+
+     ```json
+     {
+       "question": "...",
+       "answer": [{ "name": "Breed Z", "bred_for": "Lapdog, Companion" }]
+     }
+     ```
+
+
